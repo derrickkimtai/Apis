@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Name, CustomUser
+from .models import Login, Name, CustomUser
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 
@@ -36,3 +36,12 @@ class CustomUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+    
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Login
+        fields = '__all__'
+
+        def __str__(self):
+            return self.username
